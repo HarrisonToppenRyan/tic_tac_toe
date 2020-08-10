@@ -1,9 +1,9 @@
-#Game Board 
-board = ["-", "-", "-", 
+# The Game Board 
+main_board = ["-", "-", "-", 
           "-", "-", "-",
           "-", "-", "-"]
 
-# Game still going
+# Game still running
 game_still_runs = True
 
 #Whomstve won? or Draw?
@@ -12,16 +12,16 @@ winner = None
 # Who's turn is it?
 current_player = "X"
 
-def display_board():
-    print(board[0] + " | " + board[1] + " | " + board[2])
-    print(board[3] + " | " + board[4] + " | " + board[5])
-    print(board[6] + " | " + board[7] + " | " + board[8])
+def show_board():
+    print(main_board[0] + " | " + main_board[1] + " | " + main_board[2])
+    print(main_board[3] + " | " + main_board[4] + " | " + main_board[5])
+    print(main_board[6] + " | " + main_board[7] + " | " + main_board[8])
 
 # Tic Tac Toe Game
-def play_game():
+def Start_game():
     
     # Display initial board 
-    display_board()
+    display_main_board()
 
     while game_still_runs:
         
@@ -31,20 +31,20 @@ def play_game():
 
         change_player()
 
-    # Game End
+    # Game Over 
     if winner == "X" or winner == "O":
-        print(winner + " won.")
+        print(winner + " was Victorious.")
     elif winner == None:
         print("The game is a Draw.")
     
 
 def handle_turn(player):
-    position = input("Choose a position from 1-9: ")
+    position = input("Choose a position from on the main board: ")
     position = int(position) - 1
 
-    board[position] = player
+    main_board[position] = player
 
-    display_board()
+    display_main_board()
 
 def check_if_game_finished():
     check_if_win()
@@ -52,84 +52,76 @@ def check_if_game_finished():
 
 
 def check_if_win():
-
-    #Sets up variables 
     global winner 
-
 
     row_winner = check_rows()
 
-    column_winner = check_columns()
+    col_winner = check_col()
 
-    diagonal_winner = check_diagonals()
+    diag_winner = check_diag()
     if row_winner:
-        #there was a win
+        # row winner 
         winner = row_winner
-    elif column_winner:
-        #there was a win
-        winner = column_winner
-    elif diagonal_winner:
-        #there was a win
-        winner = diagonal_winner
+    elif col_winner:
+        # column winner 
+        winner = col_winner
+    elif diag_winner:
+        # diagonal winner
+        winner = diag_winner
     else: 
         #there was no win
         winner = None 
 
 def check_rows():
     global game_still_runs
-    #check is any rows are all same and not empty 
-    row_1 = board[0] == board [1] == board[2] != "-"
-    row_2 = board[3] == board [4] == board[5] != "-"
-    row_3 = board[6] == board [7] == board[8] != "-"
+    row_1 = main_board[0] == main_board [1] == main_board[2] != "-"
+    row_2 = main_board[3] == main_board [4] == main_board[5] != "-"
+    row_3 = main_board[6] == main_board [7] == main_board[8] != "-"
 
     if row_1 or row_2 or row_3:
         game_still_runs = False
-    #Return winner 
     if row_1:
-        return board[0]
+        return main_board[0]
     elif row_2:
-        return board[3]
+        return main_board[3]
     elif row_3:
-        return board[6]
+        return main_board[6]
     return None
 
 def check_columns():
     global game_still_runs
-    #check is any rows are all same and not empty 
-    column_1 = board[0] == board [3] == board[6] != "-"
-    column_2 = board[1] == board [4] == board[7] != "-"
-    column_3 = board[2] == board [5] == board[8] != "-"
+    col_1 = main_board[0] == main_board [3] == main_board[6] != "-"
+    col_2 = main_board[1] == main_board [4] == main_board[7] != "-"
+    col_3 = main_board[2] == main_board [5] == main_board[8] != "-"
 
-    if column_1 or column_2 or column_3:
+    if col_1 or col_2 or col_3:
         game_still_runs = False
     #Return winner 
-    if column_1:
+    if col_1:
         return board[0]
-    elif column_2:
+    elif col_2:
         return board[1]
-    elif column_3:
+    elif col_3:
         return board[2]
     return None
 
-def check_diagonals():
-    global game_still_runs
-    #check is any rows are all same and not empty 
-    diagonals_1 = board[0] == board [4] == board[8] != "-"
-    diagonals_2 = board[6] == board [4] == board[2] != "-"
+def check_diag():
+    global game_still_runs 
+    diag_1 = main_board[0] == main_board [4] == main_board[8] != "-"
+    diag_2 = main_board[6] == main_board [4] == main_board[2] != "-"
     
-    if diagonals_1 or diagonals_2:
+    if diag_1 or diag_2:
         game_still_runs = False
-    #Return winner 
-    if diagonals_1:
-        return board[0]
-    elif diagonals_2:
-        return board[2]
+    if diags_1:
+        return main_board[0]
+    elif diag_2:
+        return main_board[2]
     return None
 
 def check_if_draw():
     global game_still_runs
 
-    if "-" not in board:
+    if "-" not in main_board:
         game_still_runs = False 
         return True
     else:
@@ -144,6 +136,5 @@ def change_player():
     elif current_player == "O":
         current_player = "X"
     
-
 play_game()
     
