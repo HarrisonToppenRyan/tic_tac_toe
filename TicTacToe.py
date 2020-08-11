@@ -1,7 +1,3 @@
-# The Game Board 
-main_board = ["-", "-", "-", 
-          "-", "-", "-",
-          "-", "-", "-"]
 
 # Game still running
 game_still_runs = True
@@ -11,6 +7,11 @@ winner = None
 
 # Who's turn is it?
 current_player = "X"
+
+# The Game Board 
+main_board = ["-", "-", "-", 
+          "-", "-", "-",
+          "-", "-", "-"]
 
 def show_board():
     print(main_board[0] + " | " + main_board[1] + " | " + main_board[2])
