@@ -1,4 +1,5 @@
 
+
 # Game still running
 game_still_runs = True
 
@@ -7,6 +8,7 @@ winner = None
 
 # Who's turn is it?
 current_player = "X"
+current_player_2 = "O"
 
 # The Game Board 
 main_board = ["-", "-", "-", 
@@ -18,6 +20,8 @@ def show_board():
     print(main_board[3] + " | " + main_board[4] + " | " + main_board[5])
     print(main_board[6] + " | " + main_board[7] + " | " + main_board[8])
 
+
+          
 # Tic Tac Toe Game
 def Start_game():
     
@@ -51,7 +55,12 @@ def check_if_game_finished():
     check_if_win()
     check_if_draw()
 
+Class Player
 
+def___init___(self, player, score):
+          self.player = player 
+          self.score = score 
+          
 def check_if_win():
     global winner 
 
